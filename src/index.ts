@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import createApolloGraphqlServer from "./graphql";
 import UserService from "./services/user";
