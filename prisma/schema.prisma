@@ -14,13 +14,25 @@ datasource db {
 }
 
 model User {
-  id            String @id @default(uuid())
-  firstName     String @map("first_name")
-  lastName      String @map("last_name")
-  profileImgURL String? @map("profile_img_url")
-  email         String @unique
+  id            String    @id @default(uuid())
+  firstName     String    @map("first_name")
+  lastName      String    @map("last_name")
+  profileImgURL String?   @map("profile_img_url")
+  email         String    @unique
   password      String
   salt          String
+  Content       Content[]
 
   @@map("users")
+}
+
+model Content {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  authorId    String   @map("author_id")
+  author      User     @relation(fields: [authorId], references: [id])
+  createdAt   DateTime @map("created_at")
+
+  @@map("contents")
 }
