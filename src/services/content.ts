@@ -6,6 +6,14 @@ export interface CreateContentPayload {
   authorId: string;
 }
 
+// export interface GetContentPayload {
+//   id: string;
+//   title: string;
+//   description: string;
+//   authorId: string;
+//   createdAt: Date;
+// }
+
 class contentService {
   public static createContent(payload: CreateContentPayload) {
     const { title, description, authorId } = payload;
@@ -17,6 +25,11 @@ class contentService {
         createdAt: new Date().toJSON(),
       },
     });
+  }
+
+  // get content data
+  public static async getContent() {
+    return await prismaClient.content.findMany();
   }
 }
 
